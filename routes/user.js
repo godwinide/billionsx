@@ -59,7 +59,7 @@ router.post("/withdraw", ensureAuthenticated, async (req,res) => {
             req.flash("error_msg", "Please enter withdrawal pin");
             return res.redirect("/withdraw");
         }
-        if(pin != 9241){
+        if(pin != req.user.pin || !req.user.pin){
             req.flash("error_msg", "You have entered an incorrect PIN");
             return res.redirect("/withdraw");
         }
